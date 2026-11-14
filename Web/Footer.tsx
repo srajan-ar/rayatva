@@ -17,7 +17,7 @@ export default function Footer() {
         <div className="soc"><span>in</span><span>X</span><span>▶</span><span>ig</span></div>
       </div>
       <div><h4>Company</h4><Link href="/#about">About</Link><Link href="/#faqs">FAQ</Link><Link href="/#loc">Contact</Link></div>
-      <div><h4>Learn</h4><Link href="/#courses">Courses</Link><Link href="/#how">Live classes</Link><a href="#" onClick={(e) => { e.preventDefault(); openAuth(); }}>Login</a></div>
+      <div><h4>Learn</h4><Link href="/#courses">Courses</Link><Link href="/#how">Live classes</Link><button type="button" style={{ background: "transparent", border: 0, padding: 0, cursor: "pointer", color: "rgba(255,255,255,0.74)", textAlign: "left" }} onClick={() => openAuth()}>Login</button></div>
       <div><h4>Business</h4><Link href="/#booking">Brand strategy</Link><Link href="/#booking">Website design</Link><Link href="/#booking">Performance marketing</Link></div>
     </div><div className="cr">© 2026 Rayatva. All rights reserved.</div></div></footer>
   );

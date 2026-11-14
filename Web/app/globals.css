@@ -220,6 +220,10 @@ header.on {
   font-weight: 600;
 }
 
+button.lnk {
+  font: inherit;
+}
+
 header.on .lnk {
   color: var(--text-strong);
 }
