@@ -21,7 +21,7 @@ export default function Header() {
           <Link className="logo" href="/"><span className="mark">Y</span>Rayatva</Link>
           <div className="nr">
             {user ? <Link className="lnk" href="/dashboard">Dashboard</Link>
-              : <a className="lnk lg" href="#" onClick={(e) => { e.preventDefault(); openAuth(); }}>Log In</a>}
+              : <button type="button" className="lnk lg" style={{ background: "transparent", border: 0, padding: 0, cursor: "pointer" }} onClick={() => openAuth()}>Log In</button>}
             <Link className="btn sm" href="/#courses">Get Started</Link>
             <button className="burger" aria-label="Open menu" onClick={() => setDrawer(true)}>
               <span style={{ display: "grid", gap: 6 }}><i /><i /><i /></span>
@@ -37,8 +37,8 @@ export default function Header() {
         <Link className="l" href="/#booking" onClick={close}>Booking</Link>
         <Link className="l" href="/#loc" onClick={close}>Contact</Link>
         {user && <Link className="l" href="/dashboard" onClick={close}>My dashboard</Link>}
-        {!user && <a className="l" href="#" onClick={(e) => { e.preventDefault(); close(); openAuth(); }}>Login</a>}
-        {user && <a className="l" href="#" onClick={(e) => { e.preventDefault(); close(); logout(); }}>Sign out</a>}
+        {!user && <button type="button" className="l" style={{ background: "transparent", border: 0, textAlign: "left", paddingLeft: 0, paddingRight: 0, width: "100%" }} onClick={() => { close(); openAuth(); }}>Login</button>}
+        {user && <button type="button" className="l" style={{ background: "transparent", border: 0, textAlign: "left", paddingLeft: 0, paddingRight: 0, width: "100%" }} onClick={() => { close(); logout(); }}>Sign out</button>}
         <Link className="btn" href="/#courses" onClick={close} style={{ marginTop: "auto", justifyContent: "center" }}>Explore courses</Link>
       </nav>
     </>

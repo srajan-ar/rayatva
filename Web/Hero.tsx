@@ -8,8 +8,8 @@ export function Hero() {
       <div className="w">
         <div>
           <span className="pill"><span className="dot" />Courses, live yoga and business growth</span>
-          <h1>Build a stronger brand and a calmer life.</h1>
-          <p className="lead">Certified courses for modern skills, live yoga sessions for daily balance, and strategic brand growth for businesses ready to stand out.</p>
+          <h1>Build a brand that feels as good as it performs.</h1>
+          <p className="lead">Learn the skills that move your work forward, join live wellness experiences that reset your energy, and grow a business presence that actually stands out.</p>
           <div className="row"><Link className="btn wh" href="/#courses">Get Started</Link><Link className="tl" href="/#booking">Book a service</Link></div>
           <div className="trust">
             <div><b>5k+</b><span>Learners</span></div>
@@ -21,7 +21,7 @@ export function Hero() {
           <div className="gl l"><small>Live now</small><div className="pic">🧘</div><b>Morning Yoga</b><br /><small>32 joined · 4.9 rating</small></div>
           <div className="gl"><b>Everything we offer</b>
             <div className="chips">{["Brand strategy", "Video editing", "Live yoga", "Certificates", "Marketing", "Websites"].map((c) => <span key={c}>{c}</span>)}</div></div>
-          <div className="gl"><b>Learner growth</b> <small style={{ float: "right" }}>+8.5%</small>
+          <div className="gl"><b>Momentum</b> <small style={{ float: "right" }}>+8.5%</small>
             <svg viewBox="0 0 300 90" width="100%" style={{ marginTop: 10 }}>
               <path d="M0 62 L40 52 L80 68 L120 30 L160 60 L200 38 L240 46 L300 22 L300 90 L0 90Z" fill="rgba(255,255,255,.16)" />
               <path d="M0 62 L40 52 L80 68 L120 30 L160 60 L200 38 L240 46 L300 22" fill="none" stroke="#fff" strokeWidth="2.5" /></svg></div>
@@ -44,9 +44,9 @@ export function Brands() {
 export function About() {
   return (
     <div className="pull"><div className="sheet" id="about"><div className="ab">
-      <div><span className="eb">About us</span><h2>We help individuals and businesses grow with purpose.</h2>
-        <p className="lead">Rayatva is a learning and growth studio where people build stronger skills, healthier routines and clearer brand presence. We teach, coach and create with intention.</p>
-        <ul className="ck"><li>Industry-focused courses with certifications</li><li>Live yoga sessions for focus and recovery</li><li>Brand, marketing and web services for ambitious businesses</li></ul>
+      <div><span className="eb">About us</span><h2>We blend skill-building, wellness, and strong brand strategy.</h2>
+        <p className="lead">Rayatva is a learning and growth studio where people build stronger skills, healthier routines, and clearer brand presence. We teach, coach and create with intention so growth feels sustainable instead of overwhelming.</p>
+        <ul className="ck"><li>Industry-focused courses with certificates</li><li>Live yoga sessions for focus and recovery</li><li>Brand strategy, marketing and website systems for businesses</li></ul>
         <Link className="btn" href="/#loc">Talk to us</Link></div>
       <div className="big"><div><b>R</b>Rayatva</div></div>
     </div></div></div>
