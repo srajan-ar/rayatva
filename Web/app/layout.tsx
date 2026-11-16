@@ -1,13 +1,9 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Inter_Tight } from "next/font/google";
 import AppProvider from "../AppProvider";
 import Header from "../Header";
 import Footer from "../Footer";
 import { AuthModal, BookingModal } from "../Modals";
 import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const tight = Inter_Tight({ subsets: ["latin"], weight: ["700", "800"], variable: "--font-tight" });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://rayatva.in"),
@@ -58,7 +54,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${tight.variable}`}>
+      <body>
         <AppProvider>
           <Header />
           {children}

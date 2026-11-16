@@ -18,6 +18,14 @@ export default function Courses() {
           <p className="lead">Track your progress, earn certificates, and join guided live programs designed for focus, growth, and mindful execution.</p>
         </div>
 
+        <div className="course-feature-band">
+          <div className="feature-pill active">All courses</div>
+          <div className="feature-pill">Business</div>
+          <div className="feature-pill">Creative</div>
+          <div className="feature-pill">Wellness</div>
+          <div className="feature-pill">Certificates</div>
+        </div>
+
         <div className="catalog-toolbar">
           <div className="catalog-pills">
             <span className="chip active">All</span>
@@ -58,9 +66,12 @@ export default function Courses() {
                 <span>{course.level}</span>
               </div>
 
-              <div className="price">
-                ₹{course.price.toLocaleString("en-IN")}
-                <small>one-time</small>
+              <div className="price-row">
+                <div className="price">
+                  ₹{course.price.toLocaleString("en-IN")}
+                  <small>one-time</small>
+                </div>
+                <span className="mini-tag">Top Rated</span>
               </div>
 
               <div className="card-actions">

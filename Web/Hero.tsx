@@ -11,52 +11,76 @@ export function Hero() {
             Courses, live yoga and business growth
           </span>
 
-          <h1>Build a life and brand that feel aligned and profitable.</h1>
+          <h1>Grow your skills, wellness, and business with expert-led learning.</h1>
 
           <p className="lead">
-            Learn practical skills, join live wellness sessions, and grow a stronger business with a platform designed for clarity, confidence, and momentum.
+            Learn practical skills, join live wellness sessions, and build a stronger business with a premium learning experience designed for clarity, confidence, and momentum.
           </p>
+
+          <div className="hero-badges">
+            <span>Business</span>
+            <span>Creative</span>
+            <span>Wellness</span>
+            <span>Certificates</span>
+          </div>
 
           <div className="row">
             <Link className="btn wh" href="/courses">Explore courses</Link>
             <Link className="tl" href="/#booking">Book a service</Link>
           </div>
 
+          <div className="hero-metrics">
+            <div>
+              <strong>5k+</strong>
+              <span>learners</span>
+            </div>
+            <div>
+              <strong>4.9/5</strong>
+              <span>rating</span>
+            </div>
+            <div>
+              <strong>120+</strong>
+              <span>brand clients</span>
+            </div>
+          </div>
+
           <div className="trust">
             <div>
-              <b>5k+</b>
-              <span>Learners</span>
+              <b>98%</b>
+              <span>would recommend</span>
             </div>
             <div>
-              <b>120+</b>
-              <span>Brand clients</span>
+              <b>15+</b>
+              <span>expert programs</span>
             </div>
             <div>
-              <b>4.9/5</b>
-              <span>Experience</span>
+              <b>Live</b>
+              <span>cohorts weekly</span>
             </div>
           </div>
         </div>
 
         <div className="stack" aria-hidden="true">
           <div className="gl l">
-            <small>Live now</small>
+            <small>Featured cohort</small>
             <div className="pic">🧘</div>
-            <b>Morning Yoga</b>
-            <br />
-            <small>32 joined · 4.9 rating</small>
+            <b>Live Yoga + Focus Lab</b>
+            <div className="mini-stat-row">
+              <span>4.9 rating</span>
+              <span>32 joined</span>
+            </div>
           </div>
 
           <div className="gl">
-            <b>Everything we offer</b>
+            <b>Popular learning paths</b>
             <div className="chips">
               {[
                 "Brand strategy",
                 "Video editing",
                 "Live yoga",
-                "Certificates",
                 "Marketing",
                 "Websites",
+                "Certificates",
               ].map((item) => (
                 <span key={item}>{item}</span>
               ))}
@@ -64,7 +88,7 @@ export function Hero() {
           </div>
 
           <div className="gl">
-            <b>Momentum</b>
+            <b>Learning momentum</b>
             <small style={{ float: "right" }}>+8.5%</small>
             <svg viewBox="0 0 300 90" width="100%" style={{ marginTop: 10 }}>
               <path d="M0 62 L40 52 L80 68 L120 30 L160 60 L200 38 L240 46 L300 22 L300 90 L0 90Z" fill="rgba(255,255,255,.16)" />
