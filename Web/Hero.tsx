@@ -4,10 +4,6 @@ import { BRANDS } from "@/lib/data";
 export function Hero() {
   return (
     <section id="hero">
-      <video id="heroVid" autoPlay muted loop playsInline>
-        <source src="/hero.mp4" type="video/mp4" />
-      </video>
-
       <div className="w">
         <div>
           <span className="pill">
