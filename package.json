@@ -1,9 +1,0 @@
-{
-  "name": "rayatva",
-  "private": true,
-  "scripts": {
-    "dev": "npm --prefix Web run dev",
-    "build": "npm --prefix Web run build",
-    "start": "npm --prefix Web run start"
-  }
-}
