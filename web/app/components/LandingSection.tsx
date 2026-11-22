@@ -385,6 +385,8 @@ const Digits = ({ value }: { value: number }) => (
     </span>
 );
 
+
+
 const FlexCarousel = ({
     items = DEFAULT_ITEMS,
     preset = 'liquid',
@@ -1417,4 +1419,217 @@ const FlexCarousel = ({
     );
 };
 
-export default FlexCarousel;
+export { FlexCarousel };
+
+function LandingSection() {
+    const [isEntering, setIsEntering] = useState(false);
+    const heroSectionRef = useRef<HTMLElement>(null);
+    const nextSectionRef = useRef<HTMLElement>(null);
+    const transitionTimer = useRef<number | null>(null);
+
+    useEffect(() => {
+        return () => {
+            if (transitionTimer.current !== null) {
+                window.clearTimeout(transitionTimer.current);
+            }
+        };
+    }, []);
+
+    const enterNextSection = () => {
+        if (isEntering) return;
+
+        setIsEntering(true);
+
+        const prefersReducedMotion = window.matchMedia(
+            '(prefers-reduced-motion: reduce)'
+        ).matches;
+
+        transitionTimer.current = window.setTimeout(() => {
+            nextSectionRef.current?.scrollIntoView({
+                behavior: prefersReducedMotion ? 'auto' : 'smooth',
+                block: 'start',
+            });
+        }, prefersReducedMotion ? 0 : 900);
+    };
+
+    return (
+        <main className="w-full bg-[#070707] text-white">
+            <section
+                ref={heroSectionRef}
+                id="top"
+                aria-label="RAYATVA introduction"
+                className="rayatva-hero relative isolate h-[100svh] min-h-[620px] w-full overflow-hidden bg-[#070707]"
+            >
+                {/* Existing WebGL carousel — intentionally left unchanged. */}
+                <div className="absolute inset-0">
+                    <FlexCarousel
+                        preset="liquid"
+                        intro="rise"
+                        cardHeight={0.5}
+                        gap={18}
+                        radius={2}
+                        fit="natural"
+                        squeeze={0.2}
+                        focusOnClick
+                        autoplay={false}
+                        captions
+                        captureWheel={true}
+                        className="h-full w-full"
+                    />
+                </div>
+
+                {/* The exit control is a sibling of the carousel, not inside it.
+                    Its click therefore does not get consumed by the carousel's
+                    pointer or wheel handlers. */}
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 flex justify-center px-5 pb-8 sm:pb-10">
+                    <button
+                        type="button"
+                        onClick={enterNextSection}
+                        disabled={isEntering}
+                        aria-label="Discover the possibilities and continue to the next section"
+                        className="group pointer-events-auto flex flex-col items-center gap-3 rounded-sm px-5 py-3 text-center outline-none transition-opacity duration-300 hover:opacity-70 focus-visible:ring-2 focus-visible:ring-[#F15A24] focus-visible:ring-offset-4 focus-visible:ring-offset-[#070707] disabled:cursor-default"
+                    >
+                        <span className="text-[9px] font-medium uppercase tracking-[0.24em] text-white/65 sm:text-[10px]">
+                            <span className="mr-2 text-[#F15A24]">01</span>
+                            <span className="mr-2 text-white/30">—</span>
+                            Discover the possibilities
+                        </span>
+                        <span className="relative h-9 w-px overflow-hidden bg-white/20">
+                            <span className="rayatva-scroll-line absolute left-0 top-0 h-full w-full origin-top bg-[#F15A24]" />
+                        </span>
+                    </button>
+                </div>
+
+                {/* Cinematic portal transition. It only becomes active after
+                    the visitor deliberately chooses to continue. */}
+                <div
+                    aria-hidden="true"
+                    className={`pointer-events-none absolute inset-0 z-30 overflow-hidden ${
+                        isEntering ? 'rayatva-portal-active' : 'invisible'
+                    }`}
+                >
+                    <div className="rayatva-portal-curtain absolute inset-0 bg-[#050505]" />
+                    <div className="rayatva-portal-light absolute -inset-y-1/2 -left-1/2 w-[55%] rotate-[18deg] bg-[linear-gradient(90deg,transparent,rgba(241,90,36,0.08),rgba(241,90,36,0.8),rgba(255,174,112,0.22),transparent)] blur-2xl" />
+                    <div className="rayatva-portal-wordmark absolute inset-0 flex items-center justify-center">
+                        <span className="text-[clamp(2rem,7vw,5.5rem)] font-semibold tracking-[0.34em] text-white">
+                            RAYATVA
+                        </span>
+                    </div>
+                </div>
+            </section>
+
+            <section
+                ref={nextSectionRef}
+                id="discover"
+                aria-labelledby="discover-heading"
+                className="relative flex min-h-[100svh] scroll-mt-0 items-center overflow-hidden bg-[#0b0b0b] px-6 py-24 sm:px-10 lg:px-20"
+            >
+                <div className="pointer-events-none absolute -right-40 top-1/4 h-[32rem] w-[32rem] rounded-full bg-[#F15A24]/[0.07] blur-[130px]" />
+
+                <div className="relative mx-auto w-full max-w-7xl">
+                    <p className="mb-8 text-[10px] font-medium uppercase tracking-[0.3em] text-[#F15A24]">
+                        01 / The next chapter
+                    </p>
+                    <h1
+                        id="discover-heading"
+                        className="max-w-5xl text-[clamp(3rem,9vw,8.5rem)] font-medium leading-[0.92] tracking-[-0.065em]"
+                    >
+                        Growth is not
+                        <br />
+                        <span className="text-white/35">one-dimensional.</span>
+                    </h1>
+                    <div className="mt-12 flex max-w-2xl flex-col gap-6 border-t border-white/15 pt-6 sm:flex-row sm:items-start sm:justify-between">
+                        <p className="max-w-xl text-sm leading-7 text-white/55 sm:text-base">
+                            We bring ideas, people and opportunities together
+                            to create meaningful pathways for growth.
+                        </p>
+                        <a
+                            href="#top"
+                            onClick={(event) => {
+                                event.preventDefault();
+
+                                // The portal curtain stays opaque after its entrance
+                                // animation. Reset it before returning to the hero.
+                                setIsEntering(false);
+
+                                const prefersReducedMotion = window.matchMedia(
+                                    '(prefers-reduced-motion: reduce)'
+                                ).matches;
+
+                                window.requestAnimationFrame(() => {
+                                    heroSectionRef.current?.scrollIntoView({
+                                        behavior: prefersReducedMotion ? 'auto' : 'smooth',
+                                        block: 'start',
+                                    });
+                                });
+                            }}
+                            className="shrink-0 text-[10px] uppercase tracking-[0.22em] text-white/70 transition-colors hover:text-[#F15A24] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#F15A24]"
+                        >
+                            Back to the beginning ↑
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <style>{`
+                @keyframes rayatvaScroll {
+                    0% { transform: scaleY(0); transform-origin: top; }
+                    45% { transform: scaleY(1); transform-origin: top; }
+                    46% { transform: scaleY(1); transform-origin: bottom; }
+                    100% { transform: scaleY(0); transform-origin: bottom; }
+                }
+
+                @keyframes rayatvaCurtain {
+                    0% { opacity: 0; }
+                    35% { opacity: 0.82; }
+                    100% { opacity: 1; }
+                }
+
+                @keyframes rayatvaLightSweep {
+                    0% { transform: translateX(-35%) rotate(18deg); opacity: 0; }
+                    25% { opacity: 1; }
+                    75% { opacity: 0.85; }
+                    100% { transform: translateX(290%) rotate(18deg); opacity: 0; }
+                }
+
+                @keyframes rayatvaWordmark {
+                    0%, 25% { opacity: 0; transform: translateY(12px); letter-spacing: 0.5em; }
+                    55%, 82% { opacity: 1; transform: translateY(0); letter-spacing: 0.34em; }
+                    100% { opacity: 0; transform: translateY(-8px); letter-spacing: 0.28em; }
+                }
+
+                .rayatva-scroll-line {
+                    animation: rayatvaScroll 1.8s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+                }
+
+                .rayatva-portal-active .rayatva-portal-curtain {
+                    animation: rayatvaCurtain 900ms cubic-bezier(0.76, 0, 0.24, 1) forwards;
+                }
+
+                .rayatva-portal-active .rayatva-portal-light {
+                    animation: rayatvaLightSweep 900ms cubic-bezier(0.65, 0, 0.35, 1) forwards;
+                }
+
+                .rayatva-portal-active .rayatva-portal-wordmark {
+                    animation: rayatvaWordmark 900ms ease-in-out forwards;
+                }
+
+                @media (prefers-reduced-motion: reduce) {
+                    .rayatva-scroll-line {
+                        animation: none;
+                        transform: scaleY(1);
+                    }
+
+                    .rayatva-portal-active .rayatva-portal-curtain,
+                    .rayatva-portal-active .rayatva-portal-light,
+                    .rayatva-portal-active .rayatva-portal-wordmark {
+                        animation-duration: 1ms;
+                    }
+                }
+            `}</style>
+        </main>
+    );
+}
+
+export default LandingSection;
+
