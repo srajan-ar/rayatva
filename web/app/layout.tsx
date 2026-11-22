@@ -1,31 +1,29 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import Navbar from "./components/Navbar";
 import "./globals.css";
+import { Plus_Jakarta_Sans } from 'next/font/google';
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  variable: '--font-plus-jakarta',
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
-  title: "Rayatva",
-  description: "Rayatva is a platform that provide courses and live sessions for professional development and skill enhancement. It offers a wide range of courses and live sessions to help individuals improve their skills and advance their careers.",
+  title: "RAYATVA - Multi-Dimensional Growth Company",
+  description: "RAYATVA is a multi-dimensional growth company. We transform business ideas into powerful brands, empower individuals through entrepreneurship and skill-based education, and inspire growth through success-oriented learning. We also focus on health, wellness and lifestyle education, creating new skills, opportunities and pathways to success.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${plusJakartaSans.variable} h-full antialiased`}
     >
-      <Navbar />
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <Navbar />
+        {children}
+      </body>
     </html>
   );
 }
