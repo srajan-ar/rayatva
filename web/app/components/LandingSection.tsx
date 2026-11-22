@@ -1535,9 +1535,8 @@ function LandingSection() {
                     the visitor deliberately chooses to continue. */}
                 <div
                     aria-hidden="true"
-                    className={`pointer-events-none absolute inset-0 z-30 overflow-hidden ${
-                        isEntering ? 'rayatva-portal-active' : 'invisible'
-                    }`}
+                    className={`pointer-events-none absolute inset-0 z-30 overflow-hidden ${isEntering ? 'rayatva-portal-active' : 'invisible'
+                        }`}
                 >
                     <div className="rayatva-portal-curtain absolute inset-0 bg-[#050505]" />
                     <div className="rayatva-portal-light absolute -inset-y-1/2 -left-1/2 w-[55%] rotate-[18deg] bg-[linear-gradient(90deg,transparent,rgba(241,90,36,0.08),rgba(241,90,36,0.8),rgba(255,174,112,0.22),transparent)] blur-2xl" />
@@ -1553,52 +1552,106 @@ function LandingSection() {
                 ref={nextSectionRef}
                 id="discover"
                 aria-labelledby="discover-heading"
-                className="relative flex min-h-[100svh] scroll-mt-0 items-center overflow-hidden bg-[#0b0b0b] px-6 py-24 sm:px-10 lg:px-20"
+                className="relative flex min-h-[100svh] flex-col justify-between overflow-hidden bg-[#0b0b0b] px-6 pb-8 pt-28 sm:px-10 sm:pb-10 sm:pt-32 lg:px-20"
             >
+                {/* Soft ambient light behind the editorial layout. */}
                 <div className="pointer-events-none absolute -right-40 top-1/4 h-[32rem] w-[32rem] rounded-full bg-[#F15A24]/[0.07] blur-[130px]" />
 
-                <div className="relative mx-auto w-full max-w-7xl">
-                    <p className="mb-8 text-[10px] font-medium uppercase tracking-[0.3em] text-[#F15A24]">
-                        01 / The next chapter
-                    </p>
-                    <h1
-                        id="discover-heading"
-                        className="max-w-5xl text-[clamp(3rem,9vw,8.5rem)] font-medium leading-[0.92] tracking-[-0.065em]"
-                    >
-                        Growth is not
-                        <br />
-                        <span className="text-white/35">one-dimensional.</span>
-                    </h1>
-                    <div className="mt-12 flex max-w-2xl flex-col gap-6 border-t border-white/15 pt-6 sm:flex-row sm:items-start sm:justify-between">
-                        <p className="max-w-xl text-sm leading-7 text-white/55 sm:text-base">
-                            We bring ideas, people and opportunities together
-                            to create meaningful pathways for growth.
+                <div className="relative mx-auto grid w-full max-w-7xl flex-1 items-center gap-14 py-12 lg:grid-cols-[1.08fr_0.92fr] lg:gap-20">
+                    {/* Editorial copy */}
+                    <div className="relative z-10">
+                        <p className="mb-8 text-[10px] font-medium uppercase tracking-[0.3em] text-[#F15A24]">
+                            01 / The next chapter
                         </p>
-                        <a
-                            href="#top"
-                            onClick={(event) => {
-                                event.preventDefault();
 
-                                // The portal curtain stays opaque after its entrance
-                                // animation. Reset it before returning to the hero.
-                                setIsEntering(false);
-
-                                const prefersReducedMotion = window.matchMedia(
-                                    '(prefers-reduced-motion: reduce)'
-                                ).matches;
-
-                                window.requestAnimationFrame(() => {
-                                    heroSectionRef.current?.scrollIntoView({
-                                        behavior: prefersReducedMotion ? 'auto' : 'smooth',
-                                        block: 'start',
-                                    });
-                                });
-                            }}
-                            className="shrink-0 text-[10px] uppercase tracking-[0.22em] text-white/70 transition-colors hover:text-[#F15A24] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#F15A24]"
+                        <h1
+                            id="discover-heading"
+                            className="max-w-4xl text-[clamp(3.2rem,7.2vw,7.4rem)] font-medium leading-[0.91] tracking-[-0.065em]"
                         >
-                            Back to the beginning ↑
-                        </a>
+                            Growth is not
+                            <br />
+                            <span className="text-white/35">one-dimensional.</span>
+                        </h1>
+
+                        <p className="mt-9 max-w-xl text-sm leading-7 text-white/55 sm:text-base sm:leading-8">
+                            We bring ideas, people and opportunities together to create
+                            meaningful pathways for growth. One vision, expressed through
+                            multiple dimensions of possibility.
+                        </p>
+
+                        <div className="mt-12 grid max-w-xl grid-cols-3 border-t border-white/15 pt-5">
+                            <div className="pr-3">
+                                <p className="text-[10px] uppercase tracking-[0.2em] text-white/35">01</p>
+                                <p className="mt-2 text-xs font-medium tracking-wide text-white/80 sm:text-sm">Create</p>
+                            </div>
+                            <div className="border-l border-white/15 px-4">
+                                <p className="text-[10px] uppercase tracking-[0.2em] text-white/35">02</p>
+                                <p className="mt-2 text-xs font-medium tracking-wide text-white/80 sm:text-sm">Empower</p>
+                            </div>
+                            <div className="border-l border-white/15 pl-4">
+                                <p className="text-[10px] uppercase tracking-[0.2em] text-white/35">03</p>
+                                <p className="mt-2 text-xs font-medium tracking-wide text-white/80 sm:text-sm">Evolve</p>
+                            </div>
+                        </div>
                     </div>
+
+                    {/* Visual counterweight to the large typography */}
+                    <div className="relative mx-auto w-full max-w-[560px] lg:ml-auto">
+                        <div className="absolute -inset-4 rounded-[2px] border border-white/[0.08]" />
+                        <div className="relative aspect-[4/5] max-h-[620px] overflow-hidden bg-[#171411]">
+                            <img
+                                src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1400&q=85&auto=format&fit=crop"
+                                alt="Sculptural modern architecture reaching upward"
+                                className="h-full w-full object-cover object-center opacity-80"
+                                loading="lazy"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#080808]/80 via-transparent to-[#080808]/10" />
+                            <div className="absolute inset-0 bg-[#F15A24]/[0.08] mix-blend-color" />
+                            <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between gap-4 sm:bottom-8 sm:left-8 sm:right-8">
+                                <div>
+                                    <p className="text-[9px] uppercase tracking-[0.28em] text-white/55">A broader perspective</p>
+                                    <p className="mt-2 max-w-[250px] text-xl font-medium leading-tight tracking-[-0.03em] text-white sm:text-2xl">
+                                        Possibility has more than one direction.
+                                    </p>
+                                </div>
+                                <span className="mb-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/35 text-lg text-white">
+                                    ↗
+                                </span>
+                            </div>
+                        </div>
+                        <p className="mt-4 text-right text-[9px] uppercase tracking-[0.24em] text-white/30">
+                            RAYATVA — Beyond the expected
+                        </p>
+                    </div>
+                </div>
+
+                {/* Return link lives in the section footer, not beside the paragraph. */}
+                <div className="relative mx-auto flex w-full max-w-7xl items-center justify-between border-t border-white/15 pt-5">
+                    <p className="text-[9px] uppercase tracking-[0.22em] text-white/30">
+                        RAYATVA <span className="mx-2 text-white/15">/</span> A multi-dimensional growth company
+                    </p>
+                    <a
+                        href="#top"
+                        onClick={(event) => {
+                            event.preventDefault();
+                            setIsEntering(false);
+
+                            const prefersReducedMotion = window.matchMedia(
+                                '(prefers-reduced-motion: reduce)'
+                            ).matches;
+
+                            window.requestAnimationFrame(() => {
+                                heroSectionRef.current?.scrollIntoView({
+                                    behavior: prefersReducedMotion ? 'auto' : 'smooth',
+                                    block: 'start',
+                                });
+                            });
+                        }}
+                        className="group inline-flex shrink-0 items-center gap-3 py-2 text-[9px] font-medium uppercase tracking-[0.22em] text-white/55 transition-colors hover:text-[#F15A24] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#F15A24]"
+                    >
+                        <span className="transition-transform duration-300 group-hover:-translate-y-1">↑</span>
+                        Back to the beginning
+                    </a>
                 </div>
             </section>
 
