@@ -1266,6 +1266,19 @@ const FlexCarousel = ({
             }
             const unit = e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? height : 1;
             const horizontal = Math.abs(dx) > Math.abs(dy);
+
+            // Keep wheel capture while the hero is fully in view, so the
+            // carousel remains interactive. Once the hero is only partially
+            // visible, allow native page scrolling to pass through. This is
+            // essential when scrolling back up from the next section.
+            if (!horizontal && s.captureWheel) {
+                const rect = container.getBoundingClientRect();
+                const heroFullyVisible =
+                    rect.top >= -1 && rect.bottom <= window.innerHeight + 1;
+
+                if (!heroFullyVisible) return;
+            }
+
             if (!horizontal && !s.captureWheel) return;
             e.preventDefault();
             skipIntro();
@@ -1428,7 +1441,25 @@ function LandingSection() {
     const transitionTimer = useRef<number | null>(null);
 
     useEffect(() => {
+        const nextSection = nextSectionRef.current;
+        if (!nextSection) return undefined;
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    // The portal has done its job. Remove the finished
+                    // curtain so the hero is visible again on reverse scroll.
+                    setIsEntering(false);
+                }
+            },
+            { threshold: 0.15 }
+        );
+
+        observer.observe(nextSection);
+
         return () => {
+            observer.disconnect();
+
             if (transitionTimer.current !== null) {
                 window.clearTimeout(transitionTimer.current);
             }

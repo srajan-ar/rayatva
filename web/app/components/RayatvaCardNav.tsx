@@ -108,13 +108,11 @@ const THEMES: Record<string, Record<string, string>> = {
 };
 
 const ROOT =
-    'group/cn relative mx-auto my-[var(--cn-inset)] h-[var(--cn-bar)] w-full max-w-[var(--cn-max)] text-[14px] leading-[1.4] tracking-[-0.01em] [font-family:var(--cn-font-family)] [-webkit-tap-highlight-color:transparent]';
+    'group/cn fixed inset-x-0 top-0 z-50 mx-auto h-[var(--cn-bar)] w-full max-w-[var(--cn-max)] text-[14px] leading-[1.4] tracking-[-0.01em] [font-family:var(--cn-font-family)] [-webkit-tap-highlight-color:transparent]';
 const PANEL =
-    'absolute inset-x-0 top-0 z-10 h-[var(--cn-bar)] overflow-hidden rounded-[var(--cn-radius)] border border-white/[0.06] [background:var(--cn-panel)] [box-shadow:var(--cn-shadow)] [-webkit-backdrop-filter:var(--cn-blur)] [backdrop-filter:var(--cn-blur)]';
-const RIM =
-    'pointer-events-none absolute inset-0 z-[3] rounded-[inherit] [box-shadow:inset_0_0_0_1px_var(--cn-edge),inset_0_1px_0_var(--cn-highlight)]';
+    'absolute inset-x-0 top-0 z-10 h-[var(--cn-bar)] overflow-visible rounded-[var(--cn-radius)] border-0 bg-transparent shadow-none';
 const BAR =
-    'relative z-[2] box-border grid h-[var(--cn-bar)] grid-cols-[1fr_auto_1fr] items-center px-[var(--cn-inset)] group-data-[narrow]/cn:grid-cols-[auto_1fr_auto]';
+    'relative z-[2] box-border grid h-[var(--cn-bar)] grid-cols-[1fr_auto_1fr] items-center px-6 group-data-[narrow]/cn:grid-cols-[auto_1fr_auto]';
 const MENU =
     'inline-flex h-[calc(var(--cn-bar)_-_var(--cn-inset)*2)] cursor-pointer items-center gap-[11px] justify-self-start rounded-[calc(var(--cn-radius)_-_var(--cn-inset))] border border-transparent pl-[16px] pr-[14px] [background:none] [font-family:inherit] [font-size:inherit] font-semibold tracking-[0.01em] text-[var(--cn-text)] outline-none transition-all duration-300 ease-[ease] hover:border-white/[0.08] hover:[background:var(--cn-hover)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--cn-ring)] data-[icon-only]:w-[calc(var(--cn-bar)_-_var(--cn-inset)*2)] data-[icon-only]:justify-center data-[icon-only]:p-0 group-data-[narrow]/cn:col-[3] group-data-[narrow]/cn:row-[1] group-data-[narrow]/cn:justify-self-end';
 const BURGER = 'relative h-[12px] w-[19px] drop-shadow-[0_0_7px_rgba(255,122,69,0.35)]';
@@ -215,7 +213,6 @@ const CardNav = ({
     items = DEFAULT_ITEMS,
     cta,
     theme = 'dark',
-    surface = 'glass',
     openOn = 'click',
     cardEffect = 'rise',
     stagger = 0.12,
@@ -277,11 +274,6 @@ const CardNav = ({
         '--cn-card': `${cardHeight}px`,
         '--cn-font-family': 'var(--font-plus-jakarta), ui-sans-serif, system-ui, sans-serif'
     };
-    if (surface === 'glass') vars['--cn-blur'] = 'blur(20px) saturate(1.6)';
-    if (surface === 'solid') {
-        vars['--cn-panel'] = palette['--cn-solid'];
-        vars['--cn-blur'] = 'none';
-    }
     if (accentColor) {
         vars['--cn-cta'] = accentColor;
         vars['--cn-cta-ink'] = contrastInk(accentColor) || '#ffffff';
@@ -515,9 +507,6 @@ const CardNav = ({
             onPointerLeave={onPointerLeave}
         >
             <nav ref={panelRef} className={PANEL} aria-label={ariaLabel}>
-                <span aria-hidden="true" className="pointer-events-none absolute -right-20 -top-32 z-0 h-64 w-64 rounded-full bg-[#F15A24]/20 blur-[85px]" />
-                <span aria-hidden="true" className="pointer-events-none absolute -left-24 -top-36 z-0 h-56 w-56 rounded-full bg-[#FF9A68]/10 blur-[75px]" />
-                <span aria-hidden="true" className="pointer-events-none absolute inset-x-[8%] top-0 z-[1] h-px bg-gradient-to-r from-transparent via-[#FF9A68]/70 to-transparent" />
                 <div ref={barRef} className={BAR}>
                     <button
                         ref={menuRef}
@@ -610,7 +599,6 @@ const CardNav = ({
                         </div>
                     )}
                 </div>
-                <span className={RIM} />
             </nav>
         </div>
     );
