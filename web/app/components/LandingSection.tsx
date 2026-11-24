@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import type { CSSProperties } from 'react';
+import TechText from "./TechText";
 import { Renderer, Program, Mesh, Triangle, Plane, Texture, RenderTarget } from 'ogl';
 
 type BendPreset = 'liquid' | 'ribbon' | 'vortex' | 'arch';
@@ -1561,36 +1562,162 @@ function LandingSection() {
                     {/* Editorial copy */}
                     <div className="relative z-10">
                         <p className="mb-8 text-[10px] font-medium uppercase tracking-[0.3em] text-[#F15A24]">
-                            01 / The next chapter
+                            01 / THE NEXT CHAPTER
                         </p>
 
                         <h1
                             id="discover-heading"
-                            className="max-w-4xl text-[clamp(3.2rem,7.2vw,7.4rem)] font-medium leading-[0.91] tracking-[-0.065em]"
+                            className="max-w-4xl text-white"
                         >
-                            Growth is not
-                            <br />
-                            <span className="text-white/35">one-dimensional.</span>
+                            <span className="block h-[clamp(4.5rem,8.5vw,8.5rem)] w-full">
+                                <TechText
+                                    text="Growth is not"
+                                    fontWeight={500}
+                                    fontSize={150}
+                                    letterSpacing={-0.065}
+                                    color="#FFFFFF"
+                                    accentColor="#F15A24"
+                                    align="left"
+                                    reveal="letter"
+                                    reach={200}
+                                    softness={0.7}
+                                    dashLength={4}
+                                    dashGap={2}
+                                    strokeWidth={1.5}
+                                    specks={15}
+                                    selection={true}
+                                    labels={true}
+                                    draggable={true}
+                                    clickKick={true}
+                                    sweep={true}
+                                    intro="none"
+                                    guides={false}
+                                    className="h-full w-full"
+                                />
+                            </span>
+                            <span className="block h-[clamp(4.5rem,8.5vw,8.5rem)] w-full text-white/35">
+                                <TechText
+                                    text="one-dimensional."
+                                    fontWeight={500}
+                                    fontSize={150}
+                                    letterSpacing={-0.065}
+                                    color="rgba(255,255,255,0.35)"
+                                    accentColor="#F15A24"
+                                    align="left"
+                                    reveal="letter"
+                                    reach={200}
+                                    softness={0.7}
+                                    dashLength={4}
+                                    dashGap={2}
+                                    strokeWidth={1.5}
+                                    specks={15}
+                                    selection={true}
+                                    labels={true}
+                                    draggable={true}
+                                    clickKick={true}
+                                    sweep={true}
+                                    intro="none"
+                                    guides={false}
+                                    className="h-full w-full"
+                                />
+                            </span>
                         </h1>
 
-                        <p className="mt-9 max-w-xl text-sm leading-7 text-white/55 sm:text-base sm:leading-8">
-                            We bring ideas, people and opportunities together to create
-                            meaningful pathways for growth. One vision, expressed through
-                            multiple dimensions of possibility.
-                        </p>
+                        <div className="mt-9 max-w-xl space-y-1 text-sm leading-7 text-white/55 sm:text-base sm:leading-8">
+                            <div className="h-7 sm:h-8">
+                                <TechText
+                                    text="We bring ideas, people and opportunities together to create"
+                                    fontWeight={400}
+                                    fontSize={16}
+                                    letterSpacing={0}
+                                    color="rgba(255,255,255,0.55)"
+                                    accentColor="#F15A24"
+                                    align="left"
+                                    reveal="letter"
+                                    reach={200}
+                                    softness={0.7}
+                                    dashLength={4}
+                                    dashGap={2}
+                                    strokeWidth={1.5}
+                                    specks={15}
+                                    selection={true}
+                                    labels={true}
+                                    draggable={true}
+                                    clickKick={true}
+                                    sweep={true}
+                                    intro="none"
+                                    guides={false}
+                                    className="h-full w-full"
+                                />
+                            </div>
+                            <div className="h-7 sm:h-8">
+                                <TechText
+                                    text="meaningful pathways for growth. One vision, expressed"
+                                    fontWeight={400}
+                                    fontSize={16}
+                                    letterSpacing={0}
+                                    color="rgba(255,255,255,0.55)"
+                                    accentColor="#F15A24"
+                                    align="left"
+                                    reveal="letter"
+                                    reach={200}
+                                    softness={0.7}
+                                    dashLength={4}
+                                    dashGap={2}
+                                    strokeWidth={1.5}
+                                    specks={15}
+                                    selection={true}
+                                    labels={true}
+                                    draggable={true}
+                                    clickKick={true}
+                                    sweep={true}
+                                    intro="none"
+                                    guides={false}
+                                    className="h-full w-full"
+                                />
+                            </div>
+                            <div className="h-7 sm:h-8">
+                                <TechText
+                                    text="through multiple dimensions of possibility."
+                                    fontWeight={400}
+                                    fontSize={16}
+                                    letterSpacing={0}
+                                    color="rgba(255,255,255,0.55)"
+                                    accentColor="#F15A24"
+                                    align="left"
+                                    reveal="letter"
+                                    reach={200}
+                                    softness={0.7}
+                                    dashLength={4}
+                                    dashGap={2}
+                                    strokeWidth={1.5}
+                                    specks={15}
+                                    selection={true}
+                                    labels={true}
+                                    draggable={true}
+                                    clickKick={true}
+                                    sweep={true}
+                                    intro="none"
+                                    guides={false}
+                                    className="h-full w-full"
+                                />
+                            </div>
+                        </div>
 
                         <div className="mt-12 grid max-w-xl grid-cols-3 border-t border-white/15 pt-5">
                             <div className="pr-3">
-                                <p className="text-[10px] uppercase tracking-[0.2em] text-white/35">01</p>
-                                <p className="mt-2 text-xs font-medium tracking-wide text-white/80 sm:text-sm">Create</p>
+                                <p className="text-[10px] text-white/35">01</p>
+                                <p className="mt-2 text-sm font-medium text-white/80">Create</p>
                             </div>
+
                             <div className="border-l border-white/15 px-4">
-                                <p className="text-[10px] uppercase tracking-[0.2em] text-white/35">02</p>
-                                <p className="mt-2 text-xs font-medium tracking-wide text-white/80 sm:text-sm">Empower</p>
+                                <p className="text-[10px] text-white/35">02</p>
+                                <p className="mt-2 text-sm font-medium text-white/80">Empower</p>
                             </div>
+
                             <div className="border-l border-white/15 pl-4">
-                                <p className="text-[10px] uppercase tracking-[0.2em] text-white/35">03</p>
-                                <p className="mt-2 text-xs font-medium tracking-wide text-white/80 sm:text-sm">Evolve</p>
+                                <p className="text-[10px] text-white/35">03</p>
+                                <p className="mt-2 text-sm font-medium text-white/80">Evolve</p>
                             </div>
                         </div>
                     </div>
