@@ -1,8 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-// import CircularGallery, { type GalleryItem } from './CircularGallery';
-import CircularGallery, {type GalleryItem} from './CircularGallery';
+import CircularGallery, { type GalleryItem } from './CircularGallery';
 
 type Course = {
     number: string;
@@ -40,6 +39,7 @@ const courses: Course[] = [
         status: 'COMING SOON',
         includes: ['Content strategy', 'Social platforms', 'Brand growth'],
         item: {
+            locked: true,
             image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85',
             text: 'Digital Marketing',
             description: 'Understand the moving parts behind digital growth—from audience insight and content strategy to campaigns that build real connection.',
@@ -55,6 +55,7 @@ const courses: Course[] = [
         status: 'COMING SOON',
         includes: ['Idea validation', 'Business foundations', 'Sustainable growth'],
         item: {
+            locked: true,
             image: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=85',
             text: 'Entrepreneurship',
             description: 'Explore how to recognise an opportunity, test an idea, understand customers and take the first steps towards building something of your own.',
@@ -70,6 +71,7 @@ const courses: Course[] = [
         status: 'COMING SOON',
         includes: ['Clarity', 'Mindset', 'Daily practice'],
         item: {
+            locked: true,
             image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=85',
             text: 'Manifestation',
             description: 'Build a clearer relationship with your goals through reflection, intentional habits and consistent action in everyday life.',
@@ -147,8 +149,11 @@ export default function CoursesSection() {
                         </div>
                         <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
                             <h3 className="text-[clamp(2.1rem,4.5vw,4.5rem)] font-semibold uppercase leading-[0.92] tracking-[-0.065em]">{active.title}</h3>
-                            <span className={`inline-flex items-center gap-2 text-[9px] tracking-[0.22em] ${active.status === 'AVAILABLE NOW' ? 'text-[#f15a24]' : 'text-white/40'}`}>
-                                <i className={`h-1.5 w-1.5 rounded-full ${active.status === 'AVAILABLE NOW' ? 'bg-[#f15a24]' : 'bg-white/35'}`} />
+                            <span className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-[11px] font-semibold tracking-[0.2em] ${active.status === 'AVAILABLE NOW'
+                                    ? 'border-[#f15a24]/45 bg-[#f15a24]/10 text-[#ff7a4d]'
+                                    : 'border-[#f15a24]/55 bg-[#f15a24]/10 text-[#ff8a62] shadow-[0_0_28px_rgba(241,90,36,0.12)]'
+                                }`}>
+                                <i className={`h-2 w-2 rounded-full ${active.status === 'AVAILABLE NOW' ? 'bg-[#f15a24]' : 'animate-pulse bg-[#f15a24]'}`} />
                                 {active.status}
                             </span>
                         </div>

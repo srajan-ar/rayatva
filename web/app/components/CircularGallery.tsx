@@ -7,6 +7,8 @@ export type GalleryItem = {
   text?: string;
   description?: string;
   alt?: string;
+  /** Visually softens the image and marks this course as not yet released. */
+  locked?: boolean;
 };
 
 export interface CircularGalleryProps extends Omit<HTMLAttributes<HTMLDivElement>, 'style'> {
@@ -80,6 +82,7 @@ type Card = {
   alpha: number;
   dim: number;
   gray: number;
+  locked: number;
   focus: number;
   labelAlpha: number;
   labelSize: number;
@@ -195,6 +198,7 @@ uniform float uReady;
 uniform vec3 uPlaceholder;
 uniform float uGray;
 uniform float uDim;
+uniform float uLocked;
 uniform float uAlpha;
 uniform float uRing;
 uniform vec3 uRingColor;
@@ -237,10 +241,26 @@ void main() {
   vec2 uv = vLocal / uSize + 0.5;
   float aspect = uSize.x / uSize.y;
   vec2 crop = aspect > uImageAspect ? vec2(1.0, uImageAspect / aspect) : vec2(aspect / uImageAspect, 1.0);
-  vec3 image = texture(uTexture, (uv - 0.5) * crop + 0.5).rgb;
+  vec2 imageUv = (uv - 0.5) * crop + 0.5;
+  vec2 texel = 3.5 / vec2(textureSize(uTexture, 0));
+  vec3 image = texture(uTexture, imageUv).rgb;
+  // A subtle 9-tap blur gives unreleased courses a deliberate locked-state treatment.
+  vec3 softened =
+    image * 0.28 +
+    (texture(uTexture, imageUv + vec2(texel.x, 0.0)).rgb +
+     texture(uTexture, imageUv - vec2(texel.x, 0.0)).rgb +
+     texture(uTexture, imageUv + vec2(0.0, texel.y)).rgb +
+     texture(uTexture, imageUv - vec2(0.0, texel.y)).rgb) * 0.12 +
+    (texture(uTexture, imageUv + texel).rgb +
+     texture(uTexture, imageUv - texel).rgb +
+     texture(uTexture, imageUv + vec2(texel.x, -texel.y)).rgb +
+     texture(uTexture, imageUv + vec2(-texel.x, texel.y)).rgb) * 0.06;
+  image = mix(image, softened, uLocked * 0.82);
   vec3 color = mix(uPlaceholder, image, uReady);
   float luma = dot(color, vec3(0.2126, 0.7152, 0.0722));
-  color = mix(color, vec3(luma), uGray) * (1.0 - uDim);
+  color = mix(color, vec3(luma), max(uGray, uLocked * 0.48));
+  color = mix(color, color * 0.58 + vec3(0.12, 0.055, 0.025), uLocked);
+  color *= (1.0 - uDim);
   float body = cover * mix(0.08, 1.0, uReady);
   float band = abs(d - uRingGap - uRingWidth * 0.5) - uRingWidth * 0.5;
   float ring = clamp(0.5 - band / pixel, 0.0, 1.0) * uRing;
@@ -653,6 +673,7 @@ const CircularGallery = ({
           alpha: shown * mix(1, 0.12, state.open * (1 - focus)),
           dim: state.open * (1 - focus) * 0.4,
           gray: s.grayscale ? 1 - Math.max(hover, focus, slot === state.active ? state.ring : 0) : 0,
+          locked: item.locked ? 1 : 0,
           focus,
           labelAlpha: mix(1 - state.open, 1, focus),
           labelSize: mix(baseLabel, captionSize(), focus),
@@ -720,6 +741,7 @@ const CircularGallery = ({
         gl.uniform1f(u.uReady, entry.ready);
         gl.uniform1f(u.uGray, card.gray);
         gl.uniform1f(u.uDim, card.dim);
+        gl.uniform1f(u.uLocked, card.locked);
         gl.uniform1f(u.uRing, card.slot === state.active ? state.ring * (1 - card.focus) : 0);
         gl.drawElements(gl.TRIANGLES, count, gl.UNSIGNED_SHORT, 0);
       });
@@ -740,10 +762,11 @@ const CircularGallery = ({
           if (!card.item.text) return;
           const entry = pool[wrap(card.slot, pool.length)];
           used.add(entry);
-          if (entry.slot !== card.slot || entry.text !== card.item.text) {
+          const labelText = card.item.locked ? ` ${card.item.text}` : card.item.text;
+          if (entry.slot !== card.slot || entry.text !== labelText) {
             entry.slot = card.slot;
-            entry.text = card.item.text;
-            entry.el.textContent = card.item.text;
+            entry.text = labelText;
+            entry.el.textContent = labelText;
           }
           if (entry.font !== font) {
             entry.font = font;
