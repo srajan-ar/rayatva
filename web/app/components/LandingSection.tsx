@@ -1513,24 +1513,47 @@ function LandingSection() {
                 {/* The exit control is a sibling of the carousel, not inside it.
                     Its click therefore does not get consumed by the carousel's
                     pointer or wheel handlers. */}
+
                 <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 flex justify-center px-5 pb-8 sm:pb-10">
                     <button
                         type="button"
                         onClick={enterNextSection}
                         disabled={isEntering}
-                        aria-label="Discover the possibilities and continue to the next section"
-                        className="group pointer-events-auto flex flex-col items-center gap-3 rounded-sm px-5 py-3 text-center outline-none transition-opacity duration-300 hover:opacity-70 focus-visible:ring-2 focus-visible:ring-[#F15A24] focus-visible:ring-offset-4 focus-visible:ring-offset-[#070707] disabled:cursor-default"
+                        aria-label="Explore what lies beyond"
+                        className="cursor-pointer group pointer-events-auto flex items-center gap-3 rounded-full px-4 py-3 text-left outline-none transition-all duration-500 hover:bg-white/[0.04] focus-visible:ring-2 focus-visible:ring-[#F15A24] disabled:cursor-default disabled:opacity-50"
                     >
-                        <span className="text-[9px] font-medium uppercase tracking-[0.24em] text-white/65 sm:text-[10px]">
-                            <span className="mr-2 text-[#F15A24]">01</span>
-                            <span className="mr-2 text-white/30">—</span>
-                            Discover the possibilities
+                        <span className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#F15A24]/65 transition-all duration-500 group-hover:rotate-45 group-hover:bg-[#F15A24]">
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                className="h-4 w-4 text-[#F15A24] transition-colors duration-500 group-hover:text-white"
+                                aria-hidden="true"
+                            >
+                                <path
+                                    d="M12 4V20M5.5 13.5L12 20L18.5 13.5"
+                                    stroke="currentColor"
+                                    strokeWidth="1.6"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                            </svg>
                         </span>
-                        <span className="relative h-9 w-px overflow-hidden bg-white/20">
-                            <span className="rayatva-scroll-line absolute left-0 top-0 h-full w-full origin-top bg-[#F15A24]" />
+
+                        <span className="flex flex-col gap-1">
+                            <span className="text-[11px] font-medium tracking-[0.02em] text-white/90 transition-colors group-hover:text-[#F15A24] sm:text-xs">
+                                Explore what lies beyond
+                            </span>
+                            <span className="text-[8px] font-medium uppercase tracking-[0.22em] text-white/40">
+                                Enter the RAYATVA world
+                            </span>
+                        </span>
+
+                        <span className="ml-1 text-[9px] tabular-nums tracking-widest text-white/30">
+                            01
                         </span>
                     </button>
                 </div>
+
 
                 {/* Cinematic portal transition. It only becomes active after
                     the visitor deliberately chooses to continue. */}
