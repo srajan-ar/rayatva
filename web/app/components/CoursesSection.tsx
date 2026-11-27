@@ -188,7 +188,7 @@ export default function CoursesSection() {
                 </footer>
             </div>
 
-            <style jsx>{`
+            {/* <style jsx>{`
         .ray-learning {
           background:
             radial-gradient(ellipse at 50% 48%, rgba(241,90,36,.075), transparent 42%),
@@ -220,7 +220,7 @@ export default function CoursesSection() {
         @media (prefers-reduced-motion:reduce) {
           .ray-learning__copy { animation:none; }
         }
-      `}</style>
+      `}</style> */}
         </section>
     );
 }

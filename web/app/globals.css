@@ -127,3 +127,78 @@
     @apply font-sans;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+/* Course Section Home Page CSS */
+/* RAYATVA — Learning section */
+
+.ray-learning {
+  background:
+    radial-gradient(ellipse at 50% 48%, rgba(241, 90, 36, 0.075), transparent 42%),
+    linear-gradient(180deg, #080808 0%, #0d0c0b 48%, #080808 100%);
+}
+
+.ray-learning__grid {
+  opacity: 0.16;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(to bottom, transparent, black 18%, black 75%, transparent);
+}
+
+.ray-learning__glow {
+  width: 42rem;
+  height: 42rem;
+  left: 50%;
+  top: 23rem;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(241, 90, 36, 0.12), transparent 68%);
+  filter: blur(45px);
+}
+
+.ray-learning__gallery {
+  isolation: isolate;
+}
+
+.ray-learning__copy {
+  animation: ray-copy-in 0.42s ease both;
+}
+
+@keyframes ray-copy-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 639px) {
+  .ray-learning__grid {
+    background-size: 44px 44px;
+  }
+
+  .ray-learning__gallery {
+    margin-left: -1.25rem;
+    width: calc(100% + 2.5rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ray-learning__copy {
+    animation: none;
+  }
+}
