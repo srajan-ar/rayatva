@@ -2,6 +2,8 @@
 
 import Link from 'next/link';
 import './FooterSection.css';
+import { FaInstagram } from 'react-icons/fa';
+import { HiOutlineMail } from 'react-icons/hi';
 
 export default function FooterSection() {
 
@@ -33,7 +35,8 @@ export default function FooterSection() {
                         <p className="mt-4 max-w-[235px] text-xs leading-6 text-white/45">
                             A multidimensional growth company. Ideas, skills and possibilities — brought to life.
                         </p>
-                        <div className="mt-5 flex items-center gap-2">
+
+                        <div className="mt-5 flex items-center gap-3">
                             <a
                                 href="https://www.instagram.com/rayatva/"
                                 target="_blank"
@@ -41,14 +44,15 @@ export default function FooterSection() {
                                 aria-label="RAYATVA on Instagram"
                                 className="ray-footer__social"
                             >
-                                ig
+                                <FaInstagram size={18} />
                             </a>
+
                             <a
                                 href="mailto:rayatva.co@gmail.com"
                                 aria-label="Email RAYATVA"
                                 className="ray-footer__social"
                             >
-                                ↗
+                                <HiOutlineMail size={19} />
                             </a>
                         </div>
                     </div>
@@ -81,7 +85,7 @@ export default function FooterSection() {
                         </a>
                         <Link
                             href="/contact"
-                            className="ray-footer__contact mt-5 inline-flex items-center gap-3 rounded-full border border-[#f15a24]/45 bg-[#f15a24]/[0.09] px-4 py-2.5 text-xs font-semibold text-[#ff8157] transition-all hover:border-[#f15a24] hover:bg-[#f15a24] hover:text-black"
+                            className="ray-footer__contact mt-5 inline-flex mx-2 items-center gap-3 rounded-full border border-[#f15a24]/45 bg-[#f15a24]/[0.09] px-4 py-2.5 text-xs font-semibold text-[#ff8157] transition-all hover:border-[#f15a24] hover:bg-[#f15a24] hover:text-black"
                         >
                             Let&apos;s talk <span aria-hidden="true">↗</span>
                         </Link>
