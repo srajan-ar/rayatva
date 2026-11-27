@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Navbar from "./components/Navbar";
+import FooterSection from "./components/FooterSection";
 import "./globals.css";
 import { Plus_Jakarta_Sans } from 'next/font/google';
 
@@ -23,6 +24,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full flex flex-col">
         <Navbar />
         {children}
+        <FooterSection />
       </body>
     </html>
   );
